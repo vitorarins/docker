@@ -1,9 +1,9 @@
 FROM ubuntu:14.04
-MAINTAINER Traun Leyden <traun.leyden@gmail.com>
+MAINTAINER Vitor Arins <vitorarins@gmail.com>
 
 # A docker container with the Nvidia kernel module and CUDA drivers installed
 
-ENV CUDA_RUN http://developer.download.nvidia.com/compute/cuda/6_5/rel/installers/cuda_6.5.14_linux_64.run
+ENV CUDA_RUN http://developer.download.nvidia.com/compute/cuda/7_0/Prod/local_installers/cuda_7.0.28_linux.run
 
 RUN apt-get update && apt-get install -q -y \
   wget \
@@ -14,11 +14,11 @@ RUN cd /opt && \
   wget $CUDA_RUN && \
   chmod +x *.run && \
   mkdir nvidia_installers && \
-  ./cuda_6.5.14_linux_64.run -extract=`pwd`/nvidia_installers && \
+  ./cuda_7.0.28_linux_64.run -extract=`pwd`/nvidia_installers && \
   cd nvidia_installers && \
-  ./NVIDIA-Linux-x86_64-340.29.run -s -N --no-kernel-module && \
-  ./cuda-linux64-rel-6.5.14-18749181.run -noprompt
+  ./NVIDIA-Linux-x86_64-346.46.run -s -N --no-kernel-module && \
+  ./cuda-linux64-rel-7.0.28-19326674.run -noprompt
 
 # Ensure the CUDA libs and binaries are in the correct environment variables
-ENV LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-6.5/lib64
-ENV PATH=$PATH:/usr/local/cuda-6.5/bin
+ENV LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-7.0/lib64
+ENV PATH=$PATH:/usr/local/cuda-7.0/bin
