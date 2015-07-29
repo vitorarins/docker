@@ -1,4 +1,4 @@
-FROM tleyden5iwx/ubuntu-cuda
+FROM vitorarins/ubuntu-cuda:7.0
 
 MAINTAINER Traun Leyden <traun.leyden@gmail.com>
 
